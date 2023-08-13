@@ -1,6 +1,8 @@
-import {Box, Image, Pressable, Text, View} from 'native-base';
-import {IViewProps} from 'native-base/lib/typescript/components/basic/View/types';
-import {useNavigation} from '@react-navigation/native';
+import { Box, Image, Pressable, Text, View } from "native-base";
+import { IViewProps } from "native-base/lib/typescript/components/basic/View/types";
+import { useNavigation } from "@react-navigation/native";
+
+import { FontAwesome5 } from "@expo/vector-icons";
 
 type Props = IViewProps & {
   btnNotification?: boolean;
@@ -14,8 +16,8 @@ export default function TopScreen({
   btnNotification = false,
   btnBack = true,
   showImage = true,
-  mb='30px',
-  px='0px',
+  mb = "30px",
+  px = "0px",
   ...rest
 }: Props) {
   const navigation = useNavigation();
@@ -26,38 +28,52 @@ export default function TopScreen({
 
   return (
     <View
-      flexDirection={'row'}
+      flexDirection={"row"}
       px={px}
-      w={'100%'}
-      h={'50px'}
-      pt={'30px'}
+      pt={30}
+      w={"100%"}
+      h={"50px"}
       mb={mb}
-      alignItems={'center'}
-      justifyContent={'space-between'}
-      {...rest}>
+      alignItems={"center"}
+      justifyContent={"space-between"}
+      {...rest}
+    >
       <Pressable
         onPress={handleBack}
-        w="30%"
-        alignItems={'flex-start'}
-        justifyContent={'space-between'}>
+        w={10}
+        h={10}
+        alignItems={"flex-start"}
+        justifyContent={"space-between"}
+      >
         {btnBack && (
           <>
-            <Text>Voltar</Text>
+            <FontAwesome5
+              name="arrow-circle-left"
+              size={35}
+              color="black"
+            />
           </>
         )}
       </Pressable>
-      <Pressable w="30%" alignItems={'center'} justifyContent={'space-between'}>
+      <Pressable
+        w="30%"
+        alignItems={"center"}
+        justifyContent={"space-between"}
+      >
         {showImage ? (
           <Image
-            size={'40px'}
+            size={"40px"}
             alt="Voltar"
           />
         ) : (
-          ''
+          ""
         )}
       </Pressable>
       <Box w="30%">
-        <Pressable alignItems={'flex-end'} onPress={() => console.log('sino')}>
+        <Pressable
+          alignItems={"flex-end"}
+          onPress={() => console.log("sino")}
+        >
           {btnNotification && <Text>Sino</Text>}
         </Pressable>
       </Box>

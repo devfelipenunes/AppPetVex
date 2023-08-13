@@ -1,5 +1,5 @@
-import { Box, Image, Pressable, View } from "native-base";
-import { Dimensions } from "react-native";
+import { Box, Image, Pressable, Text, View } from "native-base";
+import { Dimensions, ImageBackground } from "react-native";
 import Carousel from "react-native-snap-carousel";
 
 import BGFred from "../../assets/pet/MOCK/BGFred.png";
@@ -55,14 +55,19 @@ export default function Home({ navigation }) {
     },
   ];
 
+  console.log(data[1].name);
+
   return (
     <Carousel
       data={data}
       layout={"tinder"}
+      
       itemWidth={500}
       renderItem={({ item, index }) => {
+        console.log('%cMyProject%cline:65%cindex', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(39, 72, 98);padding:3px;border-radius:2px', index)
         return (
           <Pressable
+            
             onPress={() => {
               navigation.navigate({ name: "PetHome", params: { item } });
             }}
@@ -70,7 +75,26 @@ export default function Home({ navigation }) {
             h={"100%"}
             bg={item.bg}
           >
+            {data[0] && (
+              <Box
+                alignSelf={"flex-end"}
+                w={200}
+                h={50}
+                bg={"white"}
+                zIndex={1}
+                bottom={200}
+                py={1}
+                px={2}
+                justifyContent={"center"}
+                position={"absolute"}
+              >
+                <Text
+                fontSize={25}
+                >{data[1].name}</Text>
+              </Box>
+            )}
             <Image
+              zIndex={0}
               resizeMode={"cover"}
               w={"100%"}
               h={"100%"}

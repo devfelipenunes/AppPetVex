@@ -1,6 +1,8 @@
 import React from "react";
 import { Box, HStack, Pressable, Text, View } from "native-base";
 
+import { FontAwesome5 } from "@expo/vector-icons";
+
 type Props = {
   children: React.ReactNode;
 };
@@ -19,7 +21,7 @@ export default function Footer({
   return (
     <HStack
       flex={1}
-      px={"30px"}
+      px={30}
       position={"absolute"}
       bottom={"10px"}
       left={"0px"}
@@ -31,8 +33,15 @@ export default function Footer({
           onPress={onPressL}
           w={50}
           h={50}
-          bg={"red.500"}
-        ></Pressable>
+          justifyContent={"center"}
+          alignItems={"center"}
+        >
+          <FontAwesome5
+            name="user-alt"
+            size={35}
+            color="black"
+          />
+        </Pressable>
       ) : (
         <Box></Box>
       )}
@@ -55,8 +64,15 @@ export default function Footer({
           onPress={onPressR}
           w={50}
           h={50}
-          bg={"red.500"}
-        ></Pressable>
+          justifyContent={"center"}
+          alignItems={"center"}
+        >
+          <FontAwesome5
+            name="arrow-circle-right"
+            size={35}
+            color="black"
+          />
+        </Pressable>
       ) : (
         <Box></Box>
       )}

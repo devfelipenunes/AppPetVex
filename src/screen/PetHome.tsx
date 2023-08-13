@@ -31,9 +31,23 @@ export default function PetHome({ route, navigation }) {
         <Text fontSize={20}>Vacinas</Text>
       </Pressable>
 
-      <Footer btnL 
-      
-      onPressL={() => navigation.navigate("PetOwner")}
+      <Pressable
+        mt={5}
+        w={"100%"}
+        h={50}
+        bg={"blue.500"}
+        alignItems={"center"}
+        justifyContent={"center"}
+        onPress={() => {
+          navigation.navigate({ name: "CVIStepOne", params: { item } });
+        }}
+      >
+        <Text fontSize={15}>Certificado Veterinário Internacional</Text>
+      </Pressable>
+
+      <Footer
+        btnL
+        onPressL={() => navigation.navigate("PetOwner")}
       />
     </Screen>
   );

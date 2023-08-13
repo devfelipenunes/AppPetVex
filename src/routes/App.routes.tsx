@@ -8,6 +8,9 @@ import PetSettings from "../screen/PetSettings";
 import PetVaccine from "../screen/PetVaccine";
 import PetVaccineAdd from "../screen/PetVaccineAdd";
 import PetOwner from "../screen/PetOwner";
+import CVIStepOne from "../screen/CVIStepOne";
+import CVIStepTwo from "../screen/CVIStepTwo";
+import Vet from "../screen/Vet";
 
 const { Screen, Navigator } = createNativeStackNavigator();
 
@@ -54,6 +57,18 @@ export default function AppRoutes() {
       <Screen
         name="PetOwner"
         component={PetOwner}
+      />
+      <Screen
+        name="CVIStepOne"
+        component={CVIStepOne}
+      />
+      <Screen
+        name="CVIStepTwo"
+        component={CVIStepTwo}
+      />
+      <Screen
+        name="Vet"
+        component={Vet}
       />
     </Navigator>
   );

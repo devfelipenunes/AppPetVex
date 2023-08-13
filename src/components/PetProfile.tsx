@@ -1,7 +1,15 @@
 import { Box, HStack, Image, Pressable, Text, VStack } from "native-base";
 import PetProfileBox from "./PetProfileBox";
+import { Fontisto } from "@expo/vector-icons";
 
-export default function PetProfile({ name, sex, weight, age, img,petSettings }) {
+export default function PetProfile({
+  name,
+  sex,
+  weight,
+  age,
+  img,
+  petSettings,
+}) {
   return (
     <VStack>
       <Image
@@ -22,7 +30,15 @@ export default function PetProfile({ name, sex, weight, age, img,petSettings }) 
           h={30}
           bg={"blue.400"}
           onPress={petSettings}
-        ></Pressable>
+          justifyContent={"center"}
+          alignItems={"center"}
+        >
+          <Fontisto
+            name="player-settings"
+            size={24}
+            color="black"
+          />
+        </Pressable>
       </HStack>
       <HStack justifyContent={"space-between"}>
         <PetProfileBox
