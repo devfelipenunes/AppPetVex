@@ -1,10 +1,14 @@
-import { Input as InpuT, Text } from "native-base"
+import { IInputProps, Input as InpuT, Text } from "native-base";
 
-export default function Input({text}) {
-    return(
-        <>
-            <Text>{text}</Text>
-            <InpuT />
-        </>
-    )
+type Props = IInputProps & {
+  text?: string;
+};
+
+export default function Input({ text, ...rest }: Props) {
+  return (
+    <>
+      <Text>{text}</Text>
+      <InpuT {...rest} />
+    </>
+  );
 }
