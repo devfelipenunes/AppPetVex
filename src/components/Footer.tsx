@@ -4,12 +4,17 @@ import { Box, HStack, Pressable, Text, View } from "native-base";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 type Props = {
-  children: React.ReactNode;
-};
+  btnL: boolean;
+  btnR: boolean;
+  btnC: boolean;
+  textC: string;
+  onPressL: () => void;
+  onPressR: () => void;
+  onPressC: () => void;
+
+}
 
 export default function Footer({
-  children,
-  onPress,
   btnL,
   btnC,
   btnR,
@@ -17,7 +22,7 @@ export default function Footer({
   onPressL,
   onPressR,
   onPressC,
-}) {
+}: Props) {
   return (
     <HStack
       flex={1}

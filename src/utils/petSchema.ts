@@ -12,7 +12,7 @@ const petSchema = yup.object({
   sex: yup.string().required("Necessário preencher o seu gênero."),
   weight: yup.string().required("Necessário preencher o seu gênero."),
   coatColor: yup.string().required("Necessário preencher o seu gênero."),
-  birthdate: yup
+  birthDate: yup
     .string()
     .required("Necessário preencher a sua data de nascimento."),
 });
