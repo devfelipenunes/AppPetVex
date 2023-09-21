@@ -5,7 +5,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { petSchema } from "../utils/petSchema";
 import { useState } from "react";
 import Main from "../components/Main";
-import api from "../services/api";
 
 export default function PetSettings() {
   const [pet, setPet] = useState();
@@ -38,23 +37,6 @@ export default function PetSettings() {
       "color:#fff;background:rgb(118, 77, 57);padding:3px;border-radius:2px",
       data
     );
-
-    api
-      .post("/pets", {
-        name: data.name,
-        species: data.species,
-        race: data.race,
-        microchip: data.microchip,
-        microchipDate: data.microchipDate,
-        sex: data.sex,
-        weight: data.weight,
-        coatColor: data.coatColor,
-        birthDate: data.birthDate,
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((e) => console.error(e.response));
   };
 
   return (
@@ -179,7 +161,10 @@ export default function PetSettings() {
       {/* <Pressable onPress={handleSubmit(onSubmit)}>
         <Text>salvar</Text>
       </Pressable> */}
-      <Footer btnC onPressC={handleSubmit(onSubmit)} />
+      <Footer
+        btnC
+        onPressC={handleSubmit(onSubmit)}
+      />
     </Screen>
   );
 }
