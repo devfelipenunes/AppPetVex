@@ -42,11 +42,11 @@ export default function PetSettings() {
   return (
     <Screen>
       <TopScreen />
-      <Header
-        title="Configurações do Pet"
-        description="Preencha os dados do seu pet"
-      />
       <Main>
+        <Header
+          title="Configurações do Pet"
+          description="Preencha os dados do seu pet"
+        />
         <VStack space={5}>
           <Controller
             control={control}
@@ -157,14 +157,14 @@ export default function PetSettings() {
             name="birthDate"
           />
         </VStack>
+
+        <Button
+          mt={"20px"}
+          onPress={handleSubmit(onSubmit)}
+        >
+          Salvar
+        </Button>
       </Main>
-      {/* <Pressable onPress={handleSubmit(onSubmit)}>
-        <Text>salvar</Text>
-      </Pressable> */}
-      <Footer
-        btnC
-        onPressC={handleSubmit(onSubmit)}
-      />
     </Screen>
   );
 }

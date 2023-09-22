@@ -1,4 +1,5 @@
-import {ScrollView, VStack} from 'native-base';
+import { ScrollView, VStack } from "native-base";
+import { Platform } from "react-native";
 
 type Props = {
   children: React.ReactNode;
@@ -6,15 +7,14 @@ type Props = {
   flex?: number;
 };
 
-export default function Screen({children, paddingX = '30px', flex}: Props) {
+export default function Screen({ children, paddingX = "30px", flex }: Props) {
   return (
-    <ScrollView
-      flex={flex}
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={{flexGrow: 1}}>
-      <VStack flex={1} paddingX={paddingX} h={'100%'}>
-        {children}
-      </VStack>
-    </ScrollView>
+    <VStack
+      flex={1}
+      paddingX={paddingX}
+      py={Platform.OS === "ios" ? "40px" : "0px"}
+    >
+      {children}
+    </VStack>
   );
 }

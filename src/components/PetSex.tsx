@@ -1,21 +1,26 @@
-import { HStack, Image, Pressable, Text, VStack } from "native-base";
-import PetSexBtn from "./PetSexBtn";
-
+import {
+  HStack,
+  Image,
+  Pressable,
+  Text,
+  VStack,
+  useSafeArea,
+} from "native-base";
 import PetF from "../../assets/pet/petFeminino.png";
 import PetM from "../../assets/pet/petMasculino.png";
-import { GestureResponderEvent } from "react-native";
+import { useState } from "react";
 
 interface Props {
   setSex: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
-export default function PetSex({ setSex }: Props) {
-  const sex = [
-    { img: PetF, sex: "F", onPress: () => console.log("PetSexBtn") },
-    { img: PetM, sex: "M", onPress: () => console.log("PetSexBtn") },
+export default function PetSex({ setSex, sex }: Props) {
+  const sexData = [
+    { img: PetF, sex: "F" },
+    { img: PetM, sex: "M" },
   ];
 
-  function handleSex(sex: string): void {
+  function handleSex(sex: string, index): void {
     setSex(sex);
   }
 
@@ -27,9 +32,10 @@ export default function PetSex({ setSex }: Props) {
         px={10}
         py={5}
       >
-        {sex.map((item, index) => (
+        {sexData.map((item, index) => (
           <Pressable
-            bg={"blue.400"}
+            key={index}
+            bg={sex === item.sex ? "blue.400" : "red.500"}
             h={100}
             w={100}
             justifyItems={"center"}
@@ -38,9 +44,8 @@ export default function PetSex({ setSex }: Props) {
             onPress={() => handleSex(item.sex)}
           >
             <Image
-              h={"50%"}
+              h={"100%"}
               w={"40%"}
-              bg={"red.400"}
               resizeMode="contain"
               source={item.img}
             />

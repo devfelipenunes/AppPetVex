@@ -16,8 +16,7 @@ export default function TopScreen({
   btnNotification = false,
   btnBack = true,
   showImage = true,
-  mb = "30px",
-  px = "0px",
+
   ...rest
 }: Props) {
   const navigation = useNavigation();
@@ -29,11 +28,10 @@ export default function TopScreen({
   return (
     <View
       flexDirection={"row"}
-      px={px}
       pt={30}
       w={"100%"}
       h={"50px"}
-      mb={mb}
+      mb={"20px"}
       alignItems={"center"}
       justifyContent={"space-between"}
       {...rest}

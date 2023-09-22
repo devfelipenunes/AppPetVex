@@ -4,6 +4,7 @@ import Carousel from "react-native-snap-carousel";
 
 import BGFred from "../../assets/pet/MOCK/BGFred.png";
 import BGBob from "../../assets/pet/MOCK/BGBob.png";
+import { useEffect } from "react";
 
 export default function Home({ navigation }) {
   const data = [
@@ -55,19 +56,22 @@ export default function Home({ navigation }) {
     },
   ];
 
-  console.log(data[1].name);
+  // const data = [];
+
+  useEffect(() => {
+    if (data.length === 0) {
+      navigation.navigate("PetStepOne");
+    }
+  }, []);
 
   return (
     <Carousel
       data={data}
       layout={"tinder"}
-      
       itemWidth={500}
       renderItem={({ item, index }) => {
-        console.log('%cMyProject%cline:65%cindex', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(39, 72, 98);padding:3px;border-radius:2px', index)
         return (
           <Pressable
-            
             onPress={() => {
               navigation.navigate({ name: "PetHome", params: { item } });
             }}
@@ -88,9 +92,7 @@ export default function Home({ navigation }) {
                 justifyContent={"center"}
                 position={"absolute"}
               >
-                <Text
-                fontSize={25}
-                >{data[1].name}</Text>
+                <Text fontSize={25}>{data[1].name}</Text>
               </Box>
             )}
             <Image
@@ -105,6 +107,7 @@ export default function Home({ navigation }) {
         );
       }}
       sliderWidth={Dimensions.get("screen").width}
+      sliderHeight={Dimensions.get("screen").height}
     />
   );
 }

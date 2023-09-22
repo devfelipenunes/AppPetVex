@@ -7,7 +7,7 @@ import {
   Screen,
   TopScreen,
 } from "../components";
-import { createTables } from "../db/database";
+import Main from "../components/Main";
 
 export default function PetStepOne({ navigation }) {
   const [sex, setSex] = useState<string>();
@@ -16,10 +16,6 @@ export default function PetStepOne({ navigation }) {
   async function handle() {
     navigation.navigate("PetStepTwo", { sex, name });
   }
-
-  useEffect(() => {
-    createTables();
-  }, []);
 
   return (
     <Screen>
@@ -34,7 +30,11 @@ export default function PetStepOne({ navigation }) {
         value={name}
         onChangeText={(text) => SetName(text)}
       />
-      <PetSex setSex={setSex} />
+      <PetSex
+        sex={sex}
+        setSex={setSex}
+      />
+
       <Footer
         btnR
         onPressR={handle}

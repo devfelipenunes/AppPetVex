@@ -1,14 +1,19 @@
-import {VStack} from 'native-base';
-import {IVStackProps} from 'native-base/lib/typescript/components/primitives/Stack/VStack';
+import { IScrollViewProps, ScrollView } from "native-base";
 
-type Props = IVStackProps & {
+type Props = IScrollViewProps & {
   children: React.ReactNode;
 };
 
-export default function Main({children, ...rest}: Props) {
+export default function Main({ children, ...rest }: Props) {
   return (
-    <VStack pb="150px" {...rest}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{
+        paddingBottom: 100,
+      }}
+      {...rest}
+    >
       {children}
-    </VStack>
+    </ScrollView>
   );
 }

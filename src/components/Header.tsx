@@ -1,6 +1,6 @@
-import React from 'react';
-import {Center, Text, VStack} from 'native-base';
-import {InterfaceVStackProps} from 'native-base/lib/typescript/components/primitives/Stack/VStack';
+import React from "react";
+import { Center, Text, VStack } from "native-base";
+import { InterfaceVStackProps } from "native-base/lib/typescript/components/primitives/Stack/VStack";
 
 type Props = InterfaceVStackProps & {
   title: string;
@@ -13,16 +13,27 @@ type Props = InterfaceVStackProps & {
 export default function Header({
   title,
   description,
-  marginBottom = '40px',
+  marginBottom = "40px",
   ...rest
 }: Props) {
   return (
-    <VStack marginBottom={marginBottom} {...rest}>
+    <VStack
+      marginBottom={marginBottom}
+      {...rest}
+    >
       <Center>
-        <Text fontFamily={'heading'} textAlign="center" bold fontSize={28}>
+        <Text
+          fontFamily={"heading"}
+          textAlign="center"
+          bold
+          fontSize={28}
+        >
           {title}
         </Text>
-        <Text marginTop={'8px'} textAlign="center" fontSize={16}>
+        <Text
+          textAlign="center"
+          fontSize={16}
+        >
           {description}
         </Text>
       </Center>

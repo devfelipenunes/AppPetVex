@@ -11,8 +11,7 @@ type Props = {
   onPressL: () => void;
   onPressR: () => void;
   onPressC: () => void;
-
-}
+};
 
 export default function Footer({
   btnL,
@@ -31,6 +30,7 @@ export default function Footer({
       bottom={"10px"}
       left={"0px"}
       right={"0px"}
+      pb={"20px"}
       justifyContent={"space-between"}
     >
       {btnL ? (
