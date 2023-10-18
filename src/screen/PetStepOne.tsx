@@ -7,7 +7,6 @@ import {
   Screen,
   TopScreen,
 } from "../components";
-import Main from "../components/Main";
 
 export default function PetStepOne({ navigation }) {
   const [sex, setSex] = useState<string>();

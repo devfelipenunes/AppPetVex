@@ -9,7 +9,7 @@ export default function PetStepThree({ navigation, route }) {
   const [image, setImage] = useState(null);
 
   useEffect(() => {
-    console.log(pet);
+    console.log(pet, name, sex);
   }, [name, sex, pet]);
 
   const pickImage = async () => {

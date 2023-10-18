@@ -15,12 +15,14 @@ import Vet from "../screen/Vet";
 const { Screen, Navigator } = createNativeStackNavigator();
 
 export default function AppRoutes() {
+  const firstStep = true;
+
   return (
     <Navigator
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="Home"
+      initialRouteName={firstStep ? "PetStepOne" : "Home"}
     >
       <Screen
         name="Home"

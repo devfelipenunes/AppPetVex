@@ -15,8 +15,8 @@ export default function PetStepTwo({ navigation, route }) {
   const [filteredBreeds, setFilteredBreeds] = useState([]);
 
   useEffect(() => {
-    console.log(name, sex);
-  }, [name, sex]);
+    console.log(name, sex, pet);
+  }, [name, sex, pet]);
 
   useEffect(() => {
     const filtered = breeds.filter((breed) =>
@@ -46,11 +46,11 @@ export default function PetStepTwo({ navigation, route }) {
       });
   }, []);
 
-  function goStepThree(item) {
-    setPet(item);
-    console.log("item", pet);
-    navigation.navigate("PetStepThree", { sex, name, pet });
-  }
+  useEffect(() => {
+    if (pet !== undefined) {
+      navigation.navigate("PetStepThree", { sex, name, pet });
+    }
+  }, [pet]);
 
   return (
     <Screen>
@@ -77,7 +77,7 @@ export default function PetStepTwo({ navigation, route }) {
             <Pressable
               w={200}
               h={200}
-              onPress={() => goStepThree(item)}
+              onPress={() => setPet(item.name)}
             >
               <Image
                 alt="dog"
@@ -88,10 +88,10 @@ export default function PetStepTwo({ navigation, route }) {
           )}
         />
       )}
-      <Footer
+      {/* <Footer
         btnR
         onPressR={goStepThree}
-      />
+      /> */}
     </Screen>
   );
 }
