@@ -1,37 +1,47 @@
-import { HStack, Text, VStack } from "native-base";
-import { Footer, Header, Screen, TopScreen } from "../components";
+import { Button, HStack, Text, VStack } from "native-base";
+import { Footer, Header, Input, Screen, TopScreen } from "../components";
 import PetVaccinesBox from "../components/PetVaccinesBox";
+import * as SQLite from "expo-sqlite";
+import { useState } from "react";
 
 export default function PetVaccine({ navigation, route }) {
+  const { id } = route.params;
+  const db = SQLite.openDatabase("database.db");
   const { item } = route.params;
-  console.log(
-    "%cMyProject%cline:5%citem",
-    "color:#fff;background:#ee6f57;padding:3px;border-radius:2px",
-    "color:#fff;background:#1f3c88;padding:3px;border-radius:2px",
-    "color:#fff;background:rgb(179, 214, 110);padding:3px;border-radius:2px",
-    item
-  );
+  const [vaccine, setVaccine] = useState();
+
+  const addVaccine = (petId, vaccine) => {
+    const dateAdded = new Date().toLocaleDateString("pt-BR"); // opcional, dependendo se você quer rastrear a data de adição
+
+    db.transaction((tx) => {
+      tx.executeSql(
+        "INSERT INTO vaccine_records (pet_id, vaccine, date_added) VALUES (?, ?, ?)",
+        [petId, vaccine, dateAdded],
+        (txObj, resultSet) => {
+          console.log("Vacina adicionado com sucesso!");
+          navigation.goBack();
+        },
+        (txObj, error) => console.log(error)
+      );
+    });
+  };
+
+  {
+    /*
+      TODO: Adicionar lembrete de vacinas ou medicamento 
+    */
+  }
+
   return (
     <Screen>
-      <TopScreen />
-      <Header
-        title="Vacinas"
-        description="Carteira de vacina do seu pet"
-      />
-      <VStack space={5}>
-        {item.vaccines.map((item, index) => (
-          <PetVaccinesBox
-            name={item.name}
-            date={item.date}
-          />
-        ))}
-      </VStack>
+      <Text>Ultimas vacinas</Text>
 
-      <Footer
-        btnC
-        textC={"Adicionar"}
-        onPressC={() => navigation.navigate("PetVaccineAdd")}
+      <Input
+        value={vaccine}
+        onChangeText={(text) => setVaccine(text)}
       />
+
+      <Button onPress={() => addVaccine(id, vaccine)}>Adicionar</Button>
     </Screen>
   );
 }

@@ -1,51 +1,51 @@
-import { Button, Pressable, Text, VStack } from "native-base";
-import { Footer, Header, Input, Screen, TopScreen } from "../components";
+import { Button, Text, VStack } from "native-base";
 import { Controller, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { petSchema } from "../utils/petSchema";
-import { useEffect, useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Input, Screen } from "../components";
+import * as SQLite from "expo-sqlite";
 import Main from "../components/Main";
 
-export default function PetSettings() {
+type FormData = {
+  name: string;
+  birthDate: string;
+  coatColor: string;
+  microchip: string;
+  microchipDate: string;
+  race: string;
+  sex: string;
+  species: string;
+  weight: string;
+};
+
+export default function AddPets({ navigation }) {
   const db = SQLite.openDatabase("database.db");
-  const [pet, setPet] = useState();
 
   const {
     control,
     handleSubmit,
     formState: {
-      errors: {
-        name,
-        birthDate,
-        coatColor,
-        microchip,
-        microchipDate,
-        race,
-        sex,
-        species,
-        weight,
-      },
+      errors: { name, birthDate, coatColor, race, sex, species, weight },
     },
   } = useForm({
     resolver: yupResolver(petSchema),
   });
 
-  useEffect(() => {
+  const onSubmit = async (data: FormData) => {
     db.transaction((tx) => {
       tx.executeSql(
-        "CREATE TABLE IF NOT EXISTS pets (id INTEGER PRIMARY KEY AUTOINCREMENT, name Text, bithDate Text, coatColor Text, microchip Text, microchipDate Text, race Text, sex Text, species Text, weight Text)"
-      );
-    });
-  }, [db]);
-
-  const onSubmit = async (data) => {
-    db.transaction((tx) => {
-      tx.executeSql(
-        "INSERT INTO pets (name, birthDate, coatColor, microchip, microchipDate, race, sex, species, weight) values (?,?,?,?)",
-        [],
+        "INSERT INTO pets (name, birthDate, coatColor, microchip, microchipDate, race, sex, species, weight) values (?,?,?,?,?,?,?,?,?)",
+        [
+          data.name,
+          data.birthDate,
+          data.coatColor,
+          data.race,
+          data.sex,
+          data.species,
+          data.weight,
+        ],
         (txObj, resultSet) => {
-          console.log("txObj", txObj);
-          console.log("resultSet", resultSet);
+          navigation.goBack();
         },
         (txObj, error) => console.log(error)
       );
@@ -54,13 +54,17 @@ export default function PetSettings() {
 
   return (
     <Screen>
-      <TopScreen />
+      <Text
+        mt={10}
+        textAlign={"center"}
+      >
+        Adicione seu pet{" "}
+      </Text>
       <Main>
-        <Header
-          title="Configurações do Pet"
-          description="Preencha os dados do seu pet"
-        />
-        <VStack space={5}>
+        <VStack
+          mt={5}
+          space={5}
+        >
           <Controller
             control={control}
             render={({ field: { onChange, onBlur, value } }) => (
@@ -96,30 +100,6 @@ export default function PetSettings() {
               />
             )}
             name="race"
-          />
-          <Controller
-            control={control}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Input
-                text={"microchip"}
-                onChangeText={onChange}
-                value={value}
-                error={microchip?.message}
-              />
-            )}
-            name="microchip"
-          />
-          <Controller
-            control={control}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Input
-                text={"Data de Aplicação do Microchip"}
-                onChangeText={onChange}
-                value={value}
-                error={microchipDate?.message}
-              />
-            )}
-            name="microchipDate"
           />
           <Controller
             control={control}
@@ -172,7 +152,7 @@ export default function PetSettings() {
         </VStack>
 
         <Button
-          mt={"20px"}
+          my={"20px"}
           onPress={handleSubmit(onSubmit)}
         >
           Salvar

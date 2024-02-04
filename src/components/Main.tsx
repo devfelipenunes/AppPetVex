@@ -8,9 +8,6 @@ export default function Main({ children, ...rest }: Props) {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={{
-        paddingBottom: 100,
-      }}
       {...rest}
     >
       {children}

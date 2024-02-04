@@ -7,8 +7,6 @@ const petSchema = yup.object({
     .min(3, "Digite um nome válido."),
   species: yup.string().required("Necessário preencher o seu sobrenome."),
   race: yup.string().required("Necessário preencher o seu apelido."),
-  microchip: yup.string().required("Necessário preencher o seu gênero."),
-  microchipDate: yup.string().required("Necessário preencher o seu gênero."),
   sex: yup.string().required("Necessário preencher o seu gênero."),
   weight: yup.string().required("Necessário preencher o seu gênero."),
   coatColor: yup.string().required("Necessário preencher o seu gênero."),

@@ -11,6 +11,11 @@ import PetOwner from "../screen/PetOwner";
 import CVIStepOne from "../screen/CVIStepOne";
 import CVIStepTwo from "../screen/CVIStepTwo";
 import Vet from "../screen/Vet";
+import Dashboard from "../screen/Dashboard";
+import Pets from "../screen/Pets";
+import AddPets from "../screen/AddPets";
+import Pet from "../screen/Pet";
+import PetWeight from "../screen/PetWeight";
 
 const { Screen, Navigator } = createNativeStackNavigator();
 
@@ -22,11 +27,31 @@ export default function AppRoutes() {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName={firstStep ? "PetStepOne" : "Home"}
+      initialRouteName={"Dashboard"}
     >
       <Screen
         name="Home"
         component={Home}
+      />
+      <Screen
+        name="Dashboard"
+        component={Dashboard}
+      />
+      <Screen
+        name="Pet"
+        component={Pet}
+      />
+      <Screen
+        name="Pets"
+        component={Pets}
+      />
+      <Screen
+        name="AddPets"
+        component={AddPets}
+      />
+      <Screen
+        name="PetWeight"
+        component={PetWeight}
       />
       <Screen
         name="PetStepOne"
